@@ -1,6 +1,6 @@
 #ifndef __ASM_HEADERS_H__
 #define __ASM_HEADERS_H__
 
-extern void asm_exchange(float, float, float, float) __attribute__((cdecl));
+extern float asm_exchange(float, float);
 
 #endif // __ASM_HEADERS_H__

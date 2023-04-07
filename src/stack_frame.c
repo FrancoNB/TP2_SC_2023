@@ -2,8 +2,16 @@
 
 int main(void) 
 {
-    get_cryptocoins();
-    get_exchanges();
+    usd_cryptocoins cryptocoins = get_cryptocoins();
+    usd_exchanges exchanges = get_exchanges();
+
+    printf("\nCotizaciones de criptomonedas en pesos:\n");
+    printf("    BTC: $ %.2f\n", asm_exchange(cryptocoins.btc, exchanges.ars));
+    printf("    ETH: $ %.2f\n", asm_exchange(cryptocoins.eth, exchanges.ars));
+
+    printf("\nCotizaciones de divisas en euros:\n");
+    printf("    ARS: %.2f €\n", asm_exchange(cryptocoins.btc, exchanges.eur));
+    printf("    ARS: %.2f €\n", asm_exchange(cryptocoins.eth, exchanges.eur));
 
     return 0;
 }
