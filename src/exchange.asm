@@ -10,8 +10,8 @@ asm_exchange:
     push ebp                ;guardar ebp
     mov ebp, esp            ;nuevo ebp
 
-    fld qword [ebp + 8]     ;st0 = cripto
-    fmul qword [ebp + 12]   ;st0 = cripto * divisa
+    fld dword [ebp + 8]     ;st0 = cripto
+    fmul dword [ebp + 12]   ;st0 = cripto * divisa
 
     mov esp, ebp            ;restaurar esp
     pop ebp                 ;restaurar ebp

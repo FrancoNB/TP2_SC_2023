@@ -5,13 +5,15 @@ int main(void)
     usd_cryptocoins cryptocoins = get_cryptocoins();
     usd_exchanges exchanges = get_exchanges();
 
+    printf("\nRealizando converciones...\n");
+
     printf("\nCotizaciones de criptomonedas en pesos:\n");
-    printf("    BTC: $ %.2f\n", asm_exchange(cryptocoins.btc, exchanges.ars));
-    printf("    ETH: $ %.2f\n", asm_exchange(cryptocoins.eth, exchanges.ars));
+    printf("    BTC: $ %s\n", format_currency(asm_exchange(cryptocoins.btc, exchanges.ars)));
+    printf("    ETH: $ %s\n", format_currency(asm_exchange(cryptocoins.eth, exchanges.ars)));
 
     printf("\nCotizaciones de divisas en euros:\n");
-    printf("    ARS: %.2f €\n", asm_exchange(cryptocoins.btc, exchanges.eur));
-    printf("    ARS: %.2f €\n", asm_exchange(cryptocoins.eth, exchanges.eur));
+    printf("    BTC: %s €\n", format_currency(asm_exchange(cryptocoins.btc, exchanges.eur)));
+    printf("    ETH: %s €\n", format_currency(asm_exchange(cryptocoins.eth, exchanges.eur)));
 
     return 0;
 }
@@ -29,8 +31,8 @@ usd_cryptocoins get_cryptocoins(void)
     usd_cryptocoins cryptocoins = parse_coinlayer_data(coinlayer_response);
 
     printf("\nCotizaciones obtenidas:\n");
-    printf("    BTC: U$D %.2f\n", cryptocoins.btc);
-    printf("    ETH: U$D %.2f\n", cryptocoins.eth);
+    printf("    BTC: U$D %s\n", format_currency(cryptocoins.btc));
+    printf("    ETH: U$D %s\n", format_currency(cryptocoins.eth));
 
     close(coinlayer_sockfd);
 
@@ -50,10 +52,46 @@ usd_exchanges get_exchanges(void)
     usd_exchanges exchanges = parse_fixer(fixer_response);
 
     printf("\nCotizaciones obtenidas:\n");
-    printf("    ARS: $ %.2f\n", exchanges.ars);
-    printf("    EUR: %.2f €\n", exchanges.eur);
+    printf("    ARS: $ %s\n", format_currency(exchanges.ars));
+    printf("    EUR: %s €\n", format_currency(exchanges.eur));
 
     close(fixer_sockfd);
 
     return exchanges;
+}
+
+char* format_currency(float number) 
+{
+    static char result[64];
+    char buffer[64];
+    int i, len, separador, j;
+
+    memset(result, 0, sizeof(result));
+    
+    sprintf(buffer, "%.2f", number);
+
+    len = (int)strlen(buffer);
+    separador = len - 3;
+    i = 0;
+
+    while (separador > 0) 
+    {
+        separador -= 3;
+
+        if (separador > 0) 
+        {
+            for (j = len; j >= separador; j--)
+                buffer[j + 1] = buffer[j];
+
+            buffer[separador] = ',';
+            len++;
+        }
+    }
+
+    for (j = 0; j < len; j++) 
+        result[i++] = buffer[j];
+    
+    result[i] = '\0';
+
+    return result;
 }

@@ -70,10 +70,10 @@ usd_cryptocoins parse_coinlayer_data(const char* response)
     char *aux;
 
     aux = strstr(response, "BTC") + 5;
-    result.btc = (float)atof(aux);
+    result.btc = (int)((float)atof(aux) * 100 + 0.5f) / 100.0f;
 
     aux = strstr(response, "ETH") + 5;
-    result.eth = (float)atof(aux);
+    result.eth = (int)((float)atof(aux) * 100 + 0.5f) / 100.0f;
 
     return result;
 }
@@ -84,10 +84,10 @@ usd_exchanges parse_fixer(const char* response)
     char *aux;
 
     aux = strstr(response, "ARS") + 6;
-    result.ars = (float)atof(aux);
+    result.ars = (int)((float)atof(aux) * 100 + 0.5f) / 100.0f;
 
     aux = strstr(response, "EUR") + 6;
-    result.eur = (float)atof(aux);
+    result.eur = (int)((float)atof(aux) * 100 + 0.5f) / 100.0f;
 
     return result;
 }

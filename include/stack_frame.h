@@ -17,4 +17,6 @@ const char *coinlayer_hostname = "api.coinlayer.com";
 usd_cryptocoins get_cryptocoins(void);
 usd_exchanges get_exchanges(void);
 
+char* format_currency(float number);
+
 #endif // __STACK_FRAME_H__
