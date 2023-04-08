@@ -17,4 +17,4 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -pedantic -Wextra -Wconversion
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_executable(TP2 src/stack_frame.c src/api_consumption.c src/exchange.asm)
+add_executable(TP2 src/main.c src/utils.c src/api_consumption.c src/exchange.asm)

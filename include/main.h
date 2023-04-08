@@ -1,8 +1,9 @@
-#ifndef __STACK_FRAME_H__
-#define __STACK_FRAME_H__
+#ifndef __MAIN_H__
+#define __MAIN_H__
 
 #include "api_consumption.h"
 #include "asm_headers.h"
+#include "utils.h"
 
 #define RESPONSE_BUFFER_SIZE 2048
 
@@ -17,6 +18,4 @@ const char *coinlayer_hostname = "api.coinlayer.com";
 usd_cryptocoins get_cryptocoins(void);
 usd_exchanges get_exchanges(void);
 
-char* format_currency(float number);
-
-#endif // __STACK_FRAME_H__
+#endif // __MAIN_H__

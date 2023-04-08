@@ -7,7 +7,7 @@ int create_socket(const char* hostname)
 
     if (host == NULL) 
     {
-        perror("Error al obtener la información del host");
+        perror("\nError al obtener la información del host");
         exit(EXIT_FAILURE);
     }
 
@@ -17,7 +17,7 @@ int create_socket(const char* hostname)
 
     if (sockfd < 0) 
     {
-        perror("Error al crear el socket");
+        perror("\nError al crear el socket");
         exit(EXIT_FAILURE);
     }
  
@@ -29,7 +29,7 @@ int create_socket(const char* hostname)
 
     if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) 
     {
-        perror("Error al conectar con el servidor");
+        perror("\nError al conectar con el servidor");
         exit(EXIT_FAILURE);
     }
 
@@ -46,7 +46,7 @@ char* http_get(int sockfd, const char* hostname, const char* path, const char* a
         sprintf(aux, "GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, hostname);
         
     if (send(sockfd, aux, strlen(aux), 0) < 0) {
-        perror("Error al enviar la solicitud");
+        perror("\nError al enviar la solicitud\n");
         exit(EXIT_FAILURE);
     }
 
@@ -56,6 +56,12 @@ char* http_get(int sockfd, const char* hostname, const char* path, const char* a
     {
         strcat(buffer, aux);
         memset(aux, 0, sizeof(aux));
+    }
+
+    if (strstr(buffer, "200 OK") == NULL)
+    {
+        printf("\nError al obtener la información del servidor");
+        exit(EXIT_FAILURE);
     }
 
     strcpy(aux, strstr(buffer, "\r\n\r\n"));
