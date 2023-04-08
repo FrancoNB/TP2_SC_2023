@@ -8,6 +8,8 @@ Año: 2023.
 * LENCINA, Aquiles Benjamín
 * ROBLEDO, Valentín
 
+### Grupo: _C Lovers_
+
 ### **¿Cómo usar?**
 Puede clonar y compilar este repositorio siguiendo estos pasos:
 
@@ -24,7 +26,7 @@ $ make
 Finalmente, para ejecutar el programa:
 
 ```bash
-$ ./bin/exchange
+$ ./bin/TP2
 ```
 
 ### **Resumen del Funcionamiento**
@@ -39,4 +41,4 @@ Al iniciar el programa, se realiza una consulta a las APIs, las cuales nos devue
 Luego, realizamos un par de llamadas a una función en assembler, la cual recibe como parámetro la cotización de la criptomoneda en Dólares Estadounidenses (USD) y el factor de conversión a la moneda deseada. Esta función, realiza la conversión de divisas y devuelve el resultado. De esta manera, obtenemos la cotización de Bitcoin (BTC) y Ethereum (ETH) en Pesos Argentinos (ARS) y Euros (EUR).
 
 ### **Licencia 🧾**
-_GNU General Public License v3.0 Copyright (c) 2023_
+_GNU General Public License v3.0 Copyright (c) C Lovers 2023_
