@@ -1,8 +1,15 @@
-cmake_minimum_required (VERSION 3.22)
+cmake_minimum_required(VERSION 3.22)
 
 project(STACK_FRAME)
 
 file(MAKE_DIRECTORY bin)
+
+# Instalar pkg-config si no está presente
+find_package(GCC_MULTILIB_COMPILER QUIET)
+if(NOT GCC_MULTILIB_COMPILER_FOUND)
+    message(STATUS "pkg-config no se encuentra en el sistema. Se instalará.")
+    execute_process(COMMAND sudo apt-get install -y gcc-multilib)
+endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/src)
@@ -18,3 +25,6 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -pedantic -Wextra -Wconversion
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_executable(TP2 src/main.c src/utils.c src/api_consumption.c src/exchange.asm)
+
+
+

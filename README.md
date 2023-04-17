@@ -22,6 +22,7 @@ $ cmake .
 
 $ make
 ```
+Nota: En caso de que no se encuentre la libreria multilib necesaria para la correcta ejecucion del proyecto, esta se instalara automarticamente, para ello el usuario debe darle permisos sudo al programa.
 
 Finalmente, para ejecutar el programa:
 
